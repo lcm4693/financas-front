@@ -14,7 +14,7 @@ export class DespesasListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.despesas = this.despesasService.getDespesas();
+    this.despesas =  this.despesasService.getDespesas();
   }
 
 }
