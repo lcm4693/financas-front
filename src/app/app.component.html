@@ -1,9 +1,27 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Recipe Book</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse"> -->
+    <div class="navbar-default">
+      <ul class="nav navbar-nav">
+        <li><a href="#" (click)="onSelect('incluir')">Incluir</a></li>
+        <li>
+          <a href="#" (click)="onSelect('lista')">Lista</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 <div class="container">
   <div class="row" class="mb-2">
-    <app-despesa-new></app-despesa-new>
+    <app-despesa-new *ngIf="feature === 'incluir'"></app-despesa-new>
   </div>
 
   <div class="row">
-    <app-despesas-list></app-despesas-list>
+    <app-despesas-list *ngIf="feature === 'lista'"></app-despesas-list>
   </div>
 </div>

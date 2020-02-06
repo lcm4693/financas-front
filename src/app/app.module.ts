@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { DespesasListComponent } from './despesas-list/despesas-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DespesaNewComponent } from './despesa-new/despesa-new.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DespesaNewComponent } from './despesa-new/despesa-new.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
