@@ -18,7 +18,7 @@ export class DespesasService {
       // return this.despesas;
 
       // tslint:disable-next-line: max-line-length
-      return (this.despesas = (await this.httpClient.get('/api/retornaDespesas').toPromise()) as [{ id: number, descricao: string, data: Date, valor: number }]);
+      return (this.despesas = (await this.httpClient.get('/api/api/retornaDespesas').toPromise()) as [{ id: number, descricao: string, data: Date, valor: number }]);
     } catch (e) {
       console.log('Erro: ', e);
       return this.despesas;
