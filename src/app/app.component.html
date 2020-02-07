@@ -15,10 +15,13 @@
   </div>
 </nav>
 
+<div class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+</div>
 
 <div class="container">
   <div class="row" class="mb-2">
-    <app-despesa-new *ngIf="feature === 'incluir'"></app-despesa-new>
+    <app-despesa-new (featureSelected)='onSelect($event)' *ngIf="feature === 'incluir'"></app-despesa-new>
   </div>
 
   <div class="row">
