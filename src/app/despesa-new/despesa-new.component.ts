@@ -16,9 +16,12 @@ export class DespesaNewComponent implements OnInit {
 
   ngOnInit() {}
 
+  limparDespesaTela(){
+    this.despesa = new Despesa();
+  }
+
   salvarDespesa() {
-    let despesa = this.despesasService.incluirDespesa(this.despesa);
-    console.log(despesa);
-    return despesa;
+    this.despesasService.incluirDespesa(this.despesa);
+    this.limparDespesaTela();
   }
 }
