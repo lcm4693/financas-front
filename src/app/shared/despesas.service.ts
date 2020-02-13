@@ -1,4 +1,4 @@
-import { Despesa } from './../shared/despesa';
+import { Despesa } from './despesa';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,12 +9,8 @@ export class DespesasService {
   constructor(private httpClient: HttpClient) {}
 
   async incluirDespesa(despesa: Despesa): Promise<Despesa> {
-    try {
       this.despesas.push((await this.httpClient.post('/api/api/incluirDespesa', despesa).toPromise()) as Despesa);
       return despesa;
-    } catch (e) {
-      console.log('Erro: ', e);
-    }
   }
 
   async getDespesas() {

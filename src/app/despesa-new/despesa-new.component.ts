@@ -1,4 +1,5 @@
-import { DespesasService } from './../despesas-list/despesas.service';
+import { AlertService } from './../alert-service.service';
+import { DespesasService } from './../shared/despesas.service';
 import { Despesa } from './../shared/despesa';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class DespesaNewComponent implements OnInit {
   @Output()
   featureSelected = new EventEmitter<string>();
 
-  constructor(private despesasService: DespesasService) {}
+  constructor(private despesasService: DespesasService, private alertaService: AlertService) {}
 
   ngOnInit() {}
 
@@ -28,11 +29,15 @@ export class DespesaNewComponent implements OnInit {
   }
 
   async salvarDespesa() {
-    const dep: Despesa = await this.despesasService.incluirDespesa(this.despesa);
-    if (!dep) {
-      return;
+    try {
+      const dep: Despesa = await this.despesasService.incluirDespesa(this.despesa);
+      if (!dep) {
+        return;
+      }
+      this.limparDespesaTela();
+      this.changeScreen('lista');
+    } catch (e) {
+      this.alertaService.error(e.error.message);
     }
-    this.limparDespesaTela();
-    this.changeScreen('lista');
   }
 }
