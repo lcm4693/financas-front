@@ -6,9 +6,9 @@
     <!-- <div class="collapse navbar-collapse"> -->
     <div class="navbar-default">
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="onSelect('incluir')">Incluir</a></li>
+        <li><a href="#" routerLink="/incluir">Incluir</a></li>
         <li>
-          <a href="#" (click)="onSelect('lista')">Lista</a>
+          <a href="#" routerLink="/lista">Lista</a>
         </li>
       </ul>
     </div>
@@ -21,10 +21,6 @@
 
 <div class="container">
   <div class="row" class="mb-2">
-    <app-despesa-new (featureSelected)='onSelect($event)' *ngIf="feature === 'incluir'"></app-despesa-new>
-  </div>
-
-  <div class="row">
-    <app-despesas-list *ngIf="feature === 'lista'"></app-despesas-list>
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -9,20 +9,21 @@ export class DespesasService {
   constructor(private httpClient: HttpClient) {}
 
   async incluirDespesa(despesa: Despesa): Promise<Despesa> {
-      this.despesas.push((await this.httpClient.post('/api/api/incluirDespesa', despesa).toPromise()) as Despesa);
-      return despesa;
+    this.despesas.push((await this.httpClient.post('/api/api/incluirDespesa', despesa).toPromise()) as Despesa);
+    return despesa;
+  }
+
+  async apagarDespesa(despesa: Despesa): Promise<Despesa[]> {
+    await this.httpClient.post('/api/api/apagarDespesa', despesa).toPromise();
+    this.despesas = this.despesas.filter((value, index, arr) => {
+      return value._id !== despesa._id;
+    });
+
+    return this.despesas;
   }
 
   async getDespesas() {
-    try {
-      // return this.despesas;
-
-      // tslint:disable-next-line: max-line-length
-      return (this.despesas = (await this.httpClient.get('/api/api/retornaDespesas').toPromise()) as [{ id: number; descricao: string; data: Date; valor: number }]);
-    } catch (e) {
-      console.log('Erro: ', e);
-      return this.despesas;
-    }
+    return (this.despesas = (await this.httpClient.get('/api/api/retornaDespesas').toPromise()) as Despesa[]);
   }
 
   // result(){

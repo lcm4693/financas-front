@@ -1,5 +1,5 @@
 export class Despesa {
-  public id: number;
+  public _id: string;
   public descricao: string;
   public valor: number;
   constructor() {}

@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'financas-front';
-  feature = 'lista';
   erro: { mensagem: string; tipo: string; cssClass: string };
 
   private subscription: Subscription;
@@ -18,19 +17,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.alertService.getAlert().subscribe((message) => {
-      switch (message.tipo) {
-        case 'success':
-          message.cssClass = 'alert alert-success';
-          break;
-        case 'error':
-          message.cssClass = 'alert alert-danger';
-          break;
+      this.erro = undefined;
+      if (message) {
+        switch (message.tipo) {
+          case 'success':
+            message.cssClass = 'alert alert-success';
+            break;
+          case 'error':
+            message.cssClass = 'alert alert-danger';
+            break;
+        }
+        this.erro = message;
       }
-      this.erro = message;
     });
-  }
-
-  onSelect(pagina: string): void {
-    this.feature = pagina;
   }
 }

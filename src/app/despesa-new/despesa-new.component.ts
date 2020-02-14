@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AlertService } from './../alert-service.service';
 import { DespesasService } from './../shared/despesas.service';
 import { Despesa } from './../shared/despesa';
@@ -13,10 +14,7 @@ export class DespesaNewComponent implements OnInit {
   @Input()
   despesa: Despesa = new Despesa();
 
-  @Output()
-  featureSelected = new EventEmitter<string>();
-
-  constructor(private despesasService: DespesasService, private alertaService: AlertService) {}
+  constructor(private despesasService: DespesasService, private alertaService: AlertService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -25,7 +23,7 @@ export class DespesaNewComponent implements OnInit {
   }
 
   changeScreen(tela: string) {
-    this.featureSelected.emit(tela);
+    this.router.navigate([tela]);
   }
 
   async salvarDespesa() {
@@ -34,8 +32,8 @@ export class DespesaNewComponent implements OnInit {
       if (!dep) {
         return;
       }
-      this.limparDespesaTela();
       this.changeScreen('lista');
+      this.limparDespesaTela();
     } catch (e) {
       this.alertaService.error(e.error.message);
     }

@@ -6,6 +6,13 @@ import { DespesasListComponent } from './despesas-list/despesas-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DespesaNewComponent } from './despesa-new/despesa-new.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: DespesasListComponent },
+  { path: 'lista', component: DespesasListComponent },
+  { path: 'incluir', component: DespesaNewComponent },
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +23,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [AlertService],
   bootstrap: [AppComponent]
