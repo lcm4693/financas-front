@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DespesaNewComponent } from './despesa-new/despesa-new.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: DespesasListComponent },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   providers: [AlertService],
   bootstrap: [AppComponent]
